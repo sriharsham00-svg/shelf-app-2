@@ -47,6 +47,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         @JavascriptInterface
+        fun keepAwake(on: Boolean) {
+            runOnUiThread {
+                if (on) window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+                else window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+            }
+        }
+
+        @JavascriptInterface
         fun setFullscreen(on: Boolean) {
             runOnUiThread {
                 val c = WindowInsetsControllerCompat(window, root)
